@@ -1,2 +1,4 @@
 # leetcode
-Solutions for leetcode problems
+My solutions for leetcode problems (leetcode.com)
+
+These are all done in LINQPad
