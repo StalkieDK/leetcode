@@ -15,42 +15,38 @@ void Main()
 	RunTests();  // Call RunTests() or press Alt+Shift+T to initiate testing.
 }
 
-
 double FindMedianSortedArrays(int[] nums1, int[] nums2)
 {
-	int[] merged = new int[nums1.Length + nums2.Length];
-	for (int i = 0, i1 = 0, i2 = 0; i < merged.Length; i++)
+	int totalSize = nums1.Length + nums2.Length;
+	int idx = totalSize / 2;
+	
+	int a = 0, b = 0;
+	int idx1 = 0, idx2 = 0;
+	while ((idx1 + idx2) <= idx)
 	{
-		if (i1 < nums1.Length && i2 < nums2.Length)
+		a = b;
+		if (idx1 < nums1.Length && idx2 < nums2.Length)
 		{
-			if (nums1[i1] <= nums2[i2])
+			if (nums1[idx1] <= nums2[idx2])
 			{
-				merged[i] = nums1[i1++];
+				b = nums1[idx1++];
 			}
 			else
 			{
-				merged[i] = nums2[i2++];
+				b = nums2[idx2++];
 			}
 		}
-		else if (i1 < nums1.Length)
+		else if (idx1 < nums1.Length)
 		{
-			merged[i] = nums1[i1++];
+			b = nums1[idx1++];
 		}
 		else
 		{
-			merged[i] = nums2[i2++];
+			b = nums2[idx2++];
 		}
 	}
-
-	int idx = merged.Length / 2;
-	if (merged.Length % 2 == 0)
-	{
-		return (merged[idx - 1] + merged[idx]) / 2d;
-	}
-	else
-	{
-		return merged[idx];
-	}
+	
+	return (totalSize % 2 == 0) ? (a + b) / 2d : b;
 }
 
 
