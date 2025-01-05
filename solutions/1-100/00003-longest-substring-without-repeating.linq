@@ -55,7 +55,7 @@ int LengthOfLongestSubstring(string s)
 
 
 #region private::Tests
-[Fact] void Example1() => Assert.Equal(LengthOfLongestSubstring("abcabcbb"), 3);
-[Fact] void Example2() => Assert.Equal(LengthOfLongestSubstring("bbbbb"), 1);
-[Fact] void Example3() => Assert.Equal(LengthOfLongestSubstring("pwwkew"), 3);
+[Fact] void Example1() => Assert.Equal(3, LengthOfLongestSubstring("abcabcbb"));
+[Fact] void Example2() => Assert.Equal(1, LengthOfLongestSubstring("bbbbb"));
+[Fact] void Example3() => Assert.Equal(3, LengthOfLongestSubstring("pwwkew"));
 #endregion
