@@ -18,14 +18,14 @@ int LengthOfLongestSubstring(string s)
 {
 	int largest = 0;
 	
-	var lookup = new Dictionary<char, int>();
+	bool[] lookup = new bool[127];
 	int start = 0;
 	int end = 0;
-	while (end < s.Length)
+	while (end < s.Length && largest < s.Length - start)
 	{
-		while (end < s.Length && !lookup.ContainsKey(s[end]))
+		while (end < s.Length && !lookup[(int)s[end]])
 		{
-			lookup.Add(s[end], end);
+			lookup[(int)s[end]] = true;
 			end++;
 		}
 		
@@ -38,12 +38,14 @@ int LengthOfLongestSubstring(string s)
 		// Move sliding window, if not already at the end
 		if (end < s.Length)
 		{
-			int newStart = lookup[s[end]] + 1;
-			for (int i = start; i < newStart; i++)
+			while (s[start] != s[end])
 			{
-				lookup.Remove(s[i]);
+				lookup[(int)s[start]] = false;
+				start++;
 			}
-			start = newStart;
+			
+			lookup[(int)s[start]] = false;
+			start++;
 		}
 	}
 	
