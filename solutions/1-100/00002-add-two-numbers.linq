@@ -1,4 +1,6 @@
-<Query Kind="Statements" />
+<Query Kind="Program">
+  <Namespace>Xunit</Namespace>
+</Query>
 
 /*
 2. Add Two Numbers
@@ -6,13 +8,12 @@ You are given two non-empty linked lists representing two non-negative integers.
 You may assume the two numbers do not contain any leading zero, except the number 0 itself.
 */
 
+#load "xunit"
 
-$"{AddTwoNumbers(ListNode.Create([2,4,3]), ListNode.Create([5,6,4]))}; Expected [7,0,8]".Dump();
-$"{AddTwoNumbers(ListNode.Create([0]), ListNode.Create([0]))}; Expected [0]".Dump();
-$"{AddTwoNumbers(ListNode.Create([9,9,9,9,9,9,9]), ListNode.Create([9,9,9,9]))}; Expected [8,9,9,9,0,0,0,1]".Dump();
-$"{AddTwoNumbers(ListNode.Create([9]), ListNode.Create([1,9,9,9,9,9,9,9,9,9]))}; Expected [0,0,0,0,0,0,0,0,0,0,1]".Dump();
-$"{AddTwoNumbers(ListNode.Create([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]), ListNode.Create([5,6,4]))}; Expected [6,6,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]".Dump();
-
+void Main()
+{
+	RunTests();  // Call RunTests() or press Alt+Shift+T to initiate testing.
+}
 
 ListNode AddTwoNumbers(ListNode l1, ListNode l2)
 {
@@ -83,3 +84,13 @@ class ListNode {
 	 }
 	 #endregion
  }
+
+
+
+#region private::Tests
+[Fact] void Example1() => Assert.Equal(AddTwoNumbers(ListNode.Create([2,4,3]), ListNode.Create([5,6,4])).ToString(), "[7,0,8]");
+[Fact] void Example2() => Assert.Equal(AddTwoNumbers(ListNode.Create([0]), ListNode.Create([0])).ToString(), "[0]");
+[Fact] void Example3() => Assert.Equal(AddTwoNumbers(ListNode.Create([9,9,9,9,9,9,9]), ListNode.Create([9,9,9,9])).ToString(), "[8,9,9,9,0,0,0,1]");
+[Fact] void Fail1() => Assert.Equal(AddTwoNumbers(ListNode.Create([9]), ListNode.Create([1,9,9,9,9,9,9,9,9,9])).ToString(), "[0,0,0,0,0,0,0,0,0,0,1]");
+[Fact] void Fail2() => Assert.Equal(AddTwoNumbers(ListNode.Create([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]), ListNode.Create([5,6,4])).ToString(), "[6,6,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]");
+#endregion
